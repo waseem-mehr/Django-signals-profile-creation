@@ -1,0 +1,34 @@
+{% if request.user.is_authenticated %}
+<h1>Welcome {{request.user.username}}</h1>
+<a href="{% url 'profile' %}"><button>View Profile</button></a>
+<a href="{% url 'logout' %}"><button>Logout</button></a>
+{% else %}
+<h1>Please Login First To See Your Profile</h1>
+<a href="{% url 'login' %}"><button>Login</button></a>
+<h1>Not have an account ? </h1>
+<a href="{% url 'signup' %}"><button>Sign Up</button></a>
+
+{% endif %}
+
+<h1 align="center">All Profile Post</h1>
+{% for d in descriptions %}
+<div style="border:5px solid black;margin-bottom:5px;">
+<h1><u>Our Description</u></h1>
+<img width="100px" height="50px" src="/media/{{d.user.image}}" alt=""><a href="{% url 'Userprofile'  d.user.id %}"><h1>{{d.user.user}}</h1></a>
+
+<h1>Title: {{d.title}}</h1>
+<h1>Description: {{d.desc}}</h1>
+<a href="/products/{{ d.id }}"><button>Product View</button></a>
+    <!--/products/{{d.id}}-->
+
+
+<br><br>
+</div>
+{% endfor %}
+
+<a href="{% url 'home' %}">home</a>
+<a href="{% url 'profile' %}">profile</a>
+<a href="{% url 'login' %}">login</a>
+<a href="{% url 'signup' %}">signup</a>
+<a href="{% url 'edit' %}">edit</a>
+<a href="{% url 'desc' %}">desc</a>
